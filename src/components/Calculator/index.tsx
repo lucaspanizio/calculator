@@ -1,16 +1,39 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { History } from "../History";
 import { Display } from "../Display";
 import { Keyboard } from "../Keyboard";
-import { Container, ErrorLabel } from "./styles";
+import { Container, Overlay, HistoryButton, ErrorLabel } from "./styles";
+import historyIcon from "../../assets/historyIconW.png";
 
 export const Calculator: React.FC = () => {
+  const [historyIsOpen, setHistoryIsOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const [displayValue, setDisplayValue] = useState<string>("0");
+  const divRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string>("");
+  const [displayValue, setDisplayValue] = useState<string>("0");
+
+  useEffect(() => {
+    if (error !== "") {
+      setError("");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayValue]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Clicou fora da calculadora
+      if (divRef.current && !divRef.current.contains(event.target as Node)) {
+        setHistoryIsOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
   const calculate = (expression: string) => {
     try {
-      console.log(expression);
       const result = eval(expression);
       if (isNaN(result)) {
         setError("Resultado não numérico");
@@ -25,10 +48,7 @@ export const Calculator: React.FC = () => {
   };
 
   const validateKey = (newKey: string) => {
-    setError("");
-
-    const numberKeysRegex = /[0-9]/;
-    const operatorKeysRegex = /[+\-*/]/g;
+    const operatorKeysRegex = /[+\-*/]/;
 
     const lastKey = displayValue.slice(-1);
     const lastKeyIsOperator = operatorKeysRegex.test(lastKey);
@@ -48,6 +68,7 @@ export const Calculator: React.FC = () => {
 
     // Se o display está limpo (contém somente um zero) e digitar
     // ou teclar um número, esse número toma o lugar do zero
+    const numberKeysRegex = /[0-9]/;
     if (
       numberKeysRegex.test(newKey) &&
       displayValue.length === 1 &&
@@ -73,7 +94,7 @@ export const Calculator: React.FC = () => {
       case "%":
         {
           const numbers = displayValue.match(/(\d+(\.\d+)?)/g) || [];
-          const operators = displayValue.match(operatorKeysRegex) || [];
+          const operators = displayValue.match(/[+\-*/]/g) || [];
 
           // Reescreve a expressão
           const lastOperator = operators[operators.length - 1];
@@ -99,8 +120,17 @@ export const Calculator: React.FC = () => {
     }
   };
 
+  const handleHistoryClick = () => {
+    setHistoryIsOpen(!historyIsOpen);
+  };
+
   return (
-    <Container>
+    <Container ref={divRef}>
+      <Overlay historyIsOpen={historyIsOpen} />
+      <HistoryButton onClick={handleHistoryClick} historyIsOpen={historyIsOpen}>
+        <img src={historyIcon} />
+      </HistoryButton>
+      <History isOpen={historyIsOpen} />
       <Display value={displayValue} onKeyUp={validateKey} inputRef={inputRef} />
       {error && <ErrorLabel>{error}</ErrorLabel>}
       <Keyboard onClick={validateKey} inputRef={inputRef} />

@@ -4,14 +4,13 @@ import { TKey } from './settings';
 export const Container = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1px;
-  margin-top: 15px;
+  grid-gap: 2px;
 `;
 
 export const Row = styled.div`
   display: flex;
   grid-column: 1 / span 4;
-  justify-content: space-between;
+  grid-gap: 2px;
 `;
 
 interface IButtonProps {
@@ -23,7 +22,6 @@ export const Button = styled.button<IButtonProps>`
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  margin: 0.1rem;
   min-width: 5rem; 
   height: 60px;
   border-radius: 5px;
