@@ -74,8 +74,7 @@ Acesse http://localhost:5173 para visualizar a aplicação.
 <br><br>
 
 ## 📜 Licença
-
-<p>Esse projeto está sob a <a href="https://github.com/lucaspanizio/calculator/blob/main/LICENSE">licença MIT</a>.<br>
+<p>Esse projeto está sob a <a href="https://github.com/lucaspanizio/calculator/blob/master/LICENSE">licença MIT</a>.<br>
 <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=49AA26&labelColor=000000">
 </p>
 
