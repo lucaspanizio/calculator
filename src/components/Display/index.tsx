@@ -1,7 +1,7 @@
 import React, { KeyboardEvent } from "react";
-import { Input } from "./styles";
 import { allowedKeys } from "./settings";
-import { useApp } from "../../store/hooks/useApp";
+import { Input } from "./styles";
+import { useApp } from "@/store/hooks/useApp";
 
 export const Display: React.FC = () => {
   const { error, display, validateKey, inputDisplayRef } = useApp();

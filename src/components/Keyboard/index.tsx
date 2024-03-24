@@ -1,7 +1,7 @@
 import React, { MouseEvent } from "react";
 import { Container, Button, Row } from "./styles";
 import { keys } from "./settings";
-import { useApp } from "../../store/hooks/useApp";
+import { useApp } from "@/store/hooks/useApp";
 
 export const Keyboard: React.FC = () => {
   const { validateKey, inputDisplayRef } = useApp();
