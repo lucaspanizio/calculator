@@ -4,7 +4,7 @@ import { allowedKeys } from "./settings";
 import { useApp } from "../../store/hooks/useApp";
 
 export const Display: React.FC = () => {
-  const { display, validateKey, inputDisplayRef } = useApp();
+  const { error, display, validateKey, inputDisplayRef } = useApp();
 
   const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -16,8 +16,9 @@ export const Display: React.FC = () => {
   return (
     <Input
       autoFocus
+      hasError={!!error}
       ref={inputDisplayRef}
-      value={display}
+      value={error || display}
       onKeyUp={handleKeyUp}
       onChange={() => {}}
     />

@@ -1,7 +1,9 @@
 {
   "name": "calculator",
+  "author": "José Lucas Panizio",
+  "description": "Calculadora básica com histórico",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",

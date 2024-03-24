@@ -12,7 +12,11 @@ interface IAppContext {
   error: string;
   display: string;
   historyIsOpen: boolean;
+  historyMaths: string[];
   handleHistoryClick: () => void;
+  handleHistoryMathClick: (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => void;
   validateKey: (key: string) => void;
   divCalculatorRef: RefObject<HTMLDivElement>;
   inputDisplayRef: RefObject<HTMLInputElement>;
@@ -21,14 +25,26 @@ interface IAppContext {
 export const AppContext = createContext({} as IAppContext);
 
 const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
+  const inputDisplayRef = useRef<HTMLInputElement>(null);
   const divCalculatorRef = useRef<HTMLDivElement>(null);
   const [historyIsOpen, setHistoryIsOpen] = useState(false);
-  const inputDisplayRef = useRef<HTMLInputElement>(null);
+  const [historyMaths, setHistoryMaths] = useState<string[]>([]);
   const [error, setError] = useState<string>("");
   const [display, setDisplay] = useState<string>("0");
 
   const handleHistoryClick = () => {
     setHistoryIsOpen(!historyIsOpen);
+  };
+
+  const handleHistoryMathClick = (
+    event: React.MouseEvent<HTMLLIElement, MouseEvent>
+  ) => {
+    const history = event.currentTarget.textContent;
+    const display = history?.slice(0, history.indexOf("="));
+    if (display) {
+      setDisplay(display);
+    }
+    setHistoryIsOpen(false);
   };
 
   const calculate = (expression: string) => {
@@ -38,6 +54,8 @@ const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
         setError("Resultado não numérico");
         setDisplay("0");
       } else {
+        const historyMath = `${expression}=${result.toString()}`;
+        setHistoryMaths((prev) => [...prev, historyMath]);
         setDisplay(result.toString());
       }
     } catch (error) {
@@ -83,8 +101,11 @@ const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
         if (!lastKeyIsOperator) calculate(display);
         break;
       case "c":
+        setDisplay("0");
+        break;
       case "ce":
         setDisplay("0");
+        setHistoryMaths([]);
         break;
       case "<":
       case "backspace":
@@ -120,6 +141,12 @@ const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   useEffect(() => {
+    if (error) {
+      setError("");
+    }
+  }, [display.length]);
+
+  useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       // Clicou fora da calculadora
       if (
@@ -144,7 +171,9 @@ const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
         inputDisplayRef,
         divCalculatorRef,
         historyIsOpen,
+        historyMaths,
         handleHistoryClick,
+        handleHistoryMathClick,
       }}
     >
       {children}

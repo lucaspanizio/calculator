@@ -2,13 +2,13 @@ import React from "react";
 import { History } from "../History";
 import { Display } from "../Display";
 import { Keyboard } from "../Keyboard";
-import { Container, Overlay, HistoryButton, ErrorLabel } from "./styles";
+import { Container, Overlay, HistoryButton } from "./styles";
 import { useApp } from "../../store/hooks/useApp";
 import historyIcon from "../../assets/historyIconW.png";
 
 export const Calculator: React.FC = () => {
-  const { historyIsOpen, handleHistoryClick, error, divCalculatorRef } =
-    useApp();
+  const { historyIsOpen, handleHistoryClick, divCalculatorRef } = useApp();
+
   return (
     <Container ref={divCalculatorRef}>
       <HistoryButton historyIsOpen={historyIsOpen} onClick={handleHistoryClick}>
@@ -16,7 +16,6 @@ export const Calculator: React.FC = () => {
       </HistoryButton>
 
       <Display />
-      {error && <ErrorLabel>{error}</ErrorLabel>}
       <Keyboard />
       <History />
 

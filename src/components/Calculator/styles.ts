@@ -58,7 +58,3 @@ export const HistoryButton = styled.button<IHistoryProps>`
     user-select: none;
   }
 `
-
-export const ErrorLabel = styled.label`
-  color: #991b1b;
-`
