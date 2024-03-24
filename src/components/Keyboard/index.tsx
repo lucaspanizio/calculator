@@ -1,20 +1,18 @@
-import React, { MouseEvent, RefObject } from "react";
+import React, { MouseEvent } from "react";
 import { Container, Button, Row } from "./styles";
 import { keys } from "./settings";
+import { useApp } from "../../store/hooks/useApp";
 
-interface IKeyboardProps {
-  inputRef: RefObject<HTMLInputElement>;
-  onClick: (key: string) => void;
-}
+export const Keyboard: React.FC = () => {
+  const { validateKey, inputDisplayRef } = useApp();
 
-export const Keyboard: React.FC<IKeyboardProps> = ({ onClick, inputRef }) => {
   const handleClick = (
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
     label: string
   ) => {
     event.preventDefault();
-    inputRef?.current?.focus();
-    onClick(label.toLowerCase());
+    inputDisplayRef?.current?.focus();
+    validateKey(label.toLowerCase());
   };
 
   return (

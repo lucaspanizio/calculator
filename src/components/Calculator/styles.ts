@@ -19,22 +19,21 @@ export const Container = styled.div`
   overflow: hidden;
   z-index: 1;
 `
-interface ICalculatorProps {
-  historyIsOpen: boolean;
-}
 
-export const Overlay = styled.div<ICalculatorProps>`
+export const Overlay = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   background-color: rgba(32, 32, 32, 0.7);
-
-  display: ${({historyIsOpen}) => historyIsOpen ? 'block' : 'none'};  
 `
 
-export const HistoryButton = styled.button<ICalculatorProps>`
+interface IHistoryProps {
+  historyIsOpen: boolean;
+}
+
+export const HistoryButton = styled.button<IHistoryProps>`
   width: 30px;
   aspect-ratio: 1 / 1; // height proporcional
   border-radius: 30%;

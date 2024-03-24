@@ -1,10 +1,8 @@
 import React from "react";
 import { Container } from "./styles";
+import { useApp } from "../../store/hooks/useApp";
 
-interface IHistoryProps {
-  isOpen: boolean;
-}
-
-export const History: React.FC<IHistoryProps> = ({ isOpen }) => (
-  <Container isOpen={isOpen} />
-);
+export const History: React.FC = () => {
+  const { historyIsOpen } = useApp();
+  return <Container isOpen={historyIsOpen} />;
+};
