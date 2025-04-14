@@ -1,9 +1,9 @@
-import React, { KeyboardEvent } from "react";
-import { allowedKeys } from "./settings";
-import { Input } from "./styles";
-import { useApp } from "@/store/hooks/useApp";
+import { KeyboardEvent } from 'react';
+import { allowedKeys } from './settings';
+import { Input } from './styles';
+import { useApp } from '@/hooks/useApp';
 
-export const Display: React.FC = () => {
+export const Display = () => {
   const { error, display, validateKey, inputDisplayRef } = useApp();
 
   const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {

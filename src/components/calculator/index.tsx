@@ -1,12 +1,11 @@
-import React from "react";
-import { History } from "../History";
-import { Display } from "../Display";
-import { Keyboard } from "../Keyboard";
-import { Container, Overlay, HistoryButton } from "./styles";
-import { useApp } from "@/store/hooks/useApp";
-import historyIcon from "@/assets/historyIconW.png";
+import { History } from '../History';
+import { Display } from '../Display';
+import { Keyboard } from '../Keyboard';
+import { Container, Overlay, HistoryButton } from './styles';
+import { useApp } from '@/hooks/useApp';
+import historyIcon from '@/assets/historyIconW.png';
 
-export const Calculator: React.FC = () => {
+export const Calculator = () => {
   const { historyIsOpen, handleHistoryClick, divCalculatorRef } = useApp();
 
   return (

@@ -1,8 +1,7 @@
-import React from "react";
-import { Container, List, ListItem, Span } from "./styles";
-import { useApp } from "@/store/hooks/useApp";
+import { Container, List, ListItem, Span } from './styles';
+import { useApp } from '@/hooks/useApp';
 
-export const History: React.FC = () => {
+export const History = () => {
   const { historyIsOpen, historyMaths, handleHistoryMathClick } = useApp();
 
   const showHistoryMaths = () => {

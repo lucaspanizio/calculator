@@ -1,14 +1,14 @@
-import React, { MouseEvent } from "react";
-import { Container, Button, Row } from "./styles";
-import { keys } from "./settings";
-import { useApp } from "@/store/hooks/useApp";
+import { MouseEvent } from 'react';
+import { Container, Button, Row } from './styles';
+import { keys } from './settings';
+import { useApp } from '@/hooks/useApp';
 
-export const Keyboard: React.FC = () => {
+export const Keyboard = () => {
   const { validateKey, inputDisplayRef } = useApp();
 
   const handleClick = (
     event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>,
-    label: string
+    label: string,
   ) => {
     event.preventDefault();
     inputDisplayRef?.current?.focus();
@@ -23,8 +23,7 @@ export const Keyboard: React.FC = () => {
             <Button
               key={buttonIndex}
               type={item.type}
-              onClick={(event) => handleClick(event, item.label)}
-            >
+              onClick={(event) => handleClick(event, item.label)}>
               {item.icon ? (
                 <span className="material-symbols-outlined">{item.icon}</span>
               ) : (
