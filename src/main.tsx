@@ -1,10 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import isPropValid from '@emotion/is-prop-valid';
-import { StyleSheetManager } from 'styled-components';
-import { Calculator } from '@/components/calculator';
-import { AppProvider } from '@/store/app-provider';
-import { GlobalStyle } from '@/global/styles';
+import isPropValid from '@emotion/is-prop-valid'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { StyleSheetManager } from 'styled-components'
+
+import { Calculator } from '@/components/calculator'
+import { GlobalStyle } from '@/global/styles'
+import { AppProvider } from '@/store/app-provider'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -15,4 +16,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </StyleSheetManager>
     </AppProvider>
   </React.StrictMode>,
-);
+)

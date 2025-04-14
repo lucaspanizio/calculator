@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Input = styled.input<{hasError: boolean}>`
+export const Input = styled.input<{ hasError: boolean }>`
   padding: 0.5em;
   width: 100%;
   outline: none;
@@ -11,8 +11,10 @@ export const Input = styled.input<{hasError: boolean}>`
   text-align: right;
   color: #18181b;
   background-color: #e5e7eb;
-  
-  ${({ hasError }) => hasError && `
+
+  ${({ hasError }) =>
+    hasError &&
+    `
     font-size: 1.2rem;
     color: #991b1b;
   `}

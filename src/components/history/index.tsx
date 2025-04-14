@@ -1,8 +1,9 @@
-import { Container, List, ListItem, Span } from './styles';
-import { useApp } from '@/hooks/useApp';
+import { useApp } from '@/hooks/useApp'
+
+import { Container, List, ListItem, Span } from './styles'
 
 export const History = () => {
-  const { historyIsOpen, historyMaths, handleHistoryMathClick } = useApp();
+  const { historyIsOpen, historyMaths, handleHistoryMathClick } = useApp()
 
   const showHistoryMaths = () => {
     if (historyMaths.length > 0) {
@@ -13,13 +14,13 @@ export const History = () => {
               <ListItem key={index} onClick={handleHistoryMathClick}>
                 {math}
               </ListItem>
-            );
+            )
           })}
         </List>
-      );
+      )
     }
-    return <Span>Ainda não há histórico</Span>;
-  };
+    return <Span>Ainda não há histórico</Span>
+  }
 
-  return <Container isOpen={historyIsOpen}>{showHistoryMaths()}</Container>;
-};
+  return <Container isOpen={historyIsOpen}>{showHistoryMaths()}</Container>
+}

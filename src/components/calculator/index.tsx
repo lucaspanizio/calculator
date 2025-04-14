@@ -1,12 +1,13 @@
-import { History } from '../History';
-import { Display } from '../Display';
-import { Keyboard } from '../Keyboard';
-import { Container, Overlay, HistoryButton } from './styles';
-import { useApp } from '@/hooks/useApp';
-import historyIcon from '@/assets/historyIconW.png';
+import historyIcon from '@/assets/historyIconW.png'
+import { useApp } from '@/hooks/useApp'
+
+import { Display } from '../display'
+import { History } from '../history'
+import { Keyboard } from '../keyboard'
+import { Container, Overlay, HistoryButton } from './styles'
 
 export const Calculator = () => {
-  const { historyIsOpen, handleHistoryClick, divCalculatorRef } = useApp();
+  const { historyIsOpen, handleHistoryClick, divCalculatorRef } = useApp()
 
   return (
     <Container ref={divCalculatorRef}>
@@ -20,5 +21,5 @@ export const Calculator = () => {
 
       {historyIsOpen && <Overlay />}
     </Container>
-  );
-};
+  )
+}

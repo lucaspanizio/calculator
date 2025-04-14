@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface IHistoryProps {
-  isOpen: boolean;
+  isOpen: boolean
 }
 
 export const Container = styled.div<IHistoryProps>`
@@ -12,11 +12,11 @@ export const Container = styled.div<IHistoryProps>`
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   transition: height 0.5s ease-in-out;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
   z-index: 3;
   overflow-y: scroll;
 
-  height: ${({isOpen}) => isOpen ? `88%` : `0px`};
+  height: ${({ isOpen }) => (isOpen ? `88%` : `0px`)};
 
   &::-webkit-scrollbar {
     display: none; // oculta a barra de rolagem
@@ -47,8 +47,8 @@ export const ListItem = styled.li`
   text-align: end;
   z-index: 4;
 
-   &:hover {
+  &:hover {
     background-color: #303030;
-     border-radius: 5px;
-   }
+    border-radius: 5px;
+  }
 `

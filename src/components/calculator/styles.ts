@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   position: absolute;
@@ -7,7 +7,7 @@ export const Container = styled.div`
   inset: 0; /* Define top, right, bottom e left para 0 */
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   width: max-content;
   height: fit-content;
   padding: 15px;
@@ -30,7 +30,7 @@ export const Overlay = styled.div`
 `
 
 interface IHistoryProps {
-  historyIsOpen: boolean;
+  historyIsOpen: boolean
 }
 
 export const HistoryButton = styled.button<IHistoryProps>`
@@ -44,9 +44,9 @@ export const HistoryButton = styled.button<IHistoryProps>`
   text-align: center;
   align-self: flex-end;
   z-index: 2;
-  opacity: ${({historyIsOpen}) => historyIsOpen ? 1 : 0.5};  
+  opacity: ${({ historyIsOpen }) => (historyIsOpen ? 1 : 0.5)};
 
-  &:hover{
+  &:hover {
     opacity: 1;
     background-color: #303030;
   }
@@ -54,7 +54,7 @@ export const HistoryButton = styled.button<IHistoryProps>`
   img {
     width: 20px;
     aspect-ratio: 1 / 1;
-    vertical-align: middle; 
+    vertical-align: middle;
     user-select: none;
   }
 `

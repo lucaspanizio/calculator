@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -32,4 +32,4 @@ export const GlobalStyle = createGlobalStyle`
   ol, ul {
     list-style: none;
   }
-`;
+`
