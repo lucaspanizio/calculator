@@ -2,8 +2,14 @@ import { KeyboardEvent } from 'react'
 
 import { useApp } from '@/hooks/useApp'
 
-import { allowedKeys } from './settings'
 import { Input } from './styles'
+
+// prettier-ignore
+export const allowedKeys = [
+  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+  '-', '+', '/', '*', '%', '=', 'c', 'ce', '(', ')',
+  'enter', 'backspace', 'home', 'end'
+]
 
 export const Display = () => {
   const { error, display, validateKey, inputDisplayRef } = useApp()
@@ -22,7 +28,7 @@ export const Display = () => {
       ref={inputDisplayRef}
       value={error || display}
       onKeyUp={handleKeyUp}
-      onChange={() => {}}
+      data-testid="display"
     />
   )
 }

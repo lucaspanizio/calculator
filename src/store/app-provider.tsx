@@ -116,7 +116,6 @@ export const AppProvider: React.FC<PropsWithChildren> = ({ children }) => {
           calculate(newExpression)
           return
         }
-        break
       default:
         setDisplay(`${display}${newKey}`)
     }

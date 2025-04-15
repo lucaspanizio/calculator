@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 
-interface IHistoryProps {
+interface ContainerProps {
   isOpen: boolean
 }
 
-export const Container = styled.div<IHistoryProps>`
+export const Container = styled.div<ContainerProps>`
   position: absolute;
   width: 100%;
   bottom: 0;
@@ -43,8 +43,11 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   padding: 5px 10px;
   cursor: pointer;
-  width: 100%;
   text-align: end;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   z-index: 4;
 
   &:hover {

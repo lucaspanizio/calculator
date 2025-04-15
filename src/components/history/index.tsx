@@ -2,7 +2,7 @@ import { useApp } from '@/hooks/useApp'
 
 import { Container, List, ListItem, Span } from './styles'
 
-export const History = () => {
+export const HistoryPanel = () => {
   const { historyIsOpen, historyMaths, handleHistoryMathClick } = useApp()
 
   const showHistoryMaths = () => {
@@ -11,7 +11,7 @@ export const History = () => {
         <List>
           {historyMaths.map((math, index) => {
             return (
-              <ListItem key={index} onClick={handleHistoryMathClick}>
+              <ListItem key={index} onClick={handleHistoryMathClick} data-testid="history-item">
                 {math}
               </ListItem>
             )
@@ -22,5 +22,9 @@ export const History = () => {
     return <Span>Ainda não há histórico</Span>
   }
 
-  return <Container isOpen={historyIsOpen}>{showHistoryMaths()}</Container>
+  return (
+    <Container isOpen={historyIsOpen} data-testid="history-panel">
+      {showHistoryMaths()}
+    </Container>
+  )
 }

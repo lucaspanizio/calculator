@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const Input = styled.input<{ hasError: boolean }>`
   padding: 0.5em;
@@ -14,8 +14,8 @@ export const Input = styled.input<{ hasError: boolean }>`
 
   ${({ hasError }) =>
     hasError &&
-    `
-    font-size: 1.2rem;
-    color: #991b1b;
-  `}
+    css`
+      font-size: 1.2rem;
+      color: #991b1b;
+    `}
 `

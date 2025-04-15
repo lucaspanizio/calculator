@@ -15,7 +15,7 @@ export const Keyboard = () => {
   }
 
   return (
-    <Container>
+    <Container data-testid="keyboard">
       {keys.map((row, rowIndex) => (
         <Row key={rowIndex}>
           {row.map((item, buttonIndex) => (

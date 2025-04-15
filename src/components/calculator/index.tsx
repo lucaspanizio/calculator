@@ -1,9 +1,9 @@
-import historyIcon from '@/assets/historyIconW.png'
+import historyIcon from '@/assets/historyIcon.png'
 import { useApp } from '@/hooks/useApp'
 
 import { Display } from '../display'
-import { History } from '../history'
 import { Keyboard } from '../keyboard'
+import { HistoryPanel } from '../history'
 import { Container, Overlay, HistoryButton } from './styles'
 
 export const Calculator = () => {
@@ -11,15 +11,15 @@ export const Calculator = () => {
 
   return (
     <Container ref={divCalculatorRef}>
-      <HistoryButton historyIsOpen={historyIsOpen} onClick={handleHistoryClick}>
+      <HistoryButton historyIsOpen={historyIsOpen} onClick={handleHistoryClick} data-testid="history-button">
         <img src={historyIcon} />
       </HistoryButton>
 
       <Display />
       <Keyboard />
-      <History />
+      <HistoryPanel />
 
-      {historyIsOpen && <Overlay />}
+      {historyIsOpen && <Overlay data-testid="overlay" />}
     </Container>
   )
 }
