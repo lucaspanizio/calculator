@@ -6,12 +6,12 @@ import { keys } from './settings'
 import { Container, Button, Row } from './styles'
 
 export const Keyboard = () => {
-  const { validateKey, inputDisplayRef } = useApp()
+  const { handleKey, inputDisplayRef } = useApp()
 
   const handleClick = (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>, label: string) => {
     event.preventDefault()
     inputDisplayRef?.current?.focus()
-    validateKey(label.toLowerCase())
+    handleKey(label.toLowerCase())
   }
 
   return (

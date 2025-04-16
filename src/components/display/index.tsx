@@ -8,17 +8,22 @@ import { Input } from './styles'
 export const allowedKeys = [
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
   '-', '+', '/', '*', '%', '=', 'c', 'ce', '(', ')',
-  'enter', 'backspace', 'home', 'end'
+  '.', 'enter', 'backspace', 'delete'
 ]
 
-export const Display = () => {
-  const { error, display, validateKey, inputDisplayRef } = useApp()
+const navigationKeys = ['home', 'end', 'arrowleft', 'arrowright']
 
-  const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
-    event.preventDefault()
+export const Display = () => {
+  const { error, display, handleKey, inputDisplayRef } = useApp()
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     const key = event.key.toLowerCase()
+
     if (!allowedKeys.includes(key)) return
-    validateKey(key)
+    if (navigationKeys.includes(key)) return
+
+    event.preventDefault()
+    handleKey(key)
   }
 
   return (
@@ -27,7 +32,8 @@ export const Display = () => {
       hasError={!!error}
       ref={inputDisplayRef}
       value={error || display}
-      onKeyUp={handleKeyUp}
+      onKeyDown={handleKeyDown}
+      onChange={() => {}}
       data-testid="display"
     />
   )
