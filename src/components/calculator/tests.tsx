@@ -1,32 +1,35 @@
 import { Calculator } from '@/components/calculator'
-import { describe, it, expect } from 'vitest'
-import { render, waitFor } from '@/libs/testing-library'
+import { describe, it, expect, beforeEach } from 'vitest'
+import { render, waitFor, screen } from '@/libs/testing-library'
 
 describe('Calculator', () => {
+  let rerender: ReturnType<typeof render>['rerender']
+
+  beforeEach(() => {
+    const renderResult = render(<Calculator />)
+    rerender = renderResult.rerender
+  })
+
   describe('Display', () => {
     it('should be rendered', () => {
-      const { getByTestId } = render(<Calculator />)
-      expect(getByTestId('display')).toBeInTheDocument()
+      expect(screen.getByTestId('display')).toBeInTheDocument()
     })
   })
 
   describe('Keyboard', () => {
     it('should be rendered', () => {
-      const { getByTestId } = render(<Calculator />)
-      expect(getByTestId('keyboard')).toBeInTheDocument()
+      expect(screen.getByTestId('keyboard')).toBeInTheDocument()
     })
   })
 
   describe('History button', () => {
     it('should be rendered', () => {
-      const { getByTestId } = render(<Calculator />)
-      expect(getByTestId('history-button')).toBeInTheDocument()
+      expect(screen.getByTestId('history-button')).toBeInTheDocument()
     })
 
     it('should toggle the history panel when clicked', async () => {
-      const { getByTestId } = render(<Calculator />)
-      const button = getByTestId('history-button')
-      const panel = getByTestId('history-panel')
+      const button = screen.getByTestId('history-button')
+      const panel = screen.getByTestId('history-panel')
 
       button.click()
       expect(panel).toBeInTheDocument()
@@ -39,31 +42,23 @@ describe('Calculator', () => {
 
   describe('History panel', () => {
     it('should be rendered', () => {
-      const { getByTestId } = render(<Calculator />)
-      expect(getByTestId('history-panel')).toBeInTheDocument()
+      expect(screen.getByTestId('history-panel')).toBeInTheDocument()
     })
   })
 
   describe('Overlay', () => {
-    it('should be rendered', () => {
-      const { getByTestId } = render(<Calculator />)
-      expect(getByTestId('history-button')).toBeInTheDocument()
-    })
-
-    it('should render overlay when panel is open and remove it when closed', async () => {
-      const { getByTestId, findByTestId, queryByTestId, rerender } = render(<Calculator />)
-
-      const button = getByTestId('history-button')
+    it('should be rendered when the history panel is open', async () => {
+      const button = screen.getByTestId('history-button')
 
       button.click()
 
-      expect(await findByTestId('overlay')).toBeInTheDocument()
+      expect(await screen.findByTestId('overlay')).toBeInTheDocument()
 
       button.click()
 
       rerender(<Calculator />)
 
-      await waitFor(() => expect(queryByTestId('overlay')).not.toBeInTheDocument())
+      await waitFor(() => expect(screen.queryByTestId('overlay')).not.toBeInTheDocument())
     })
   })
 })
